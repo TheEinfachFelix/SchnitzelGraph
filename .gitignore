@@ -29,3 +29,7 @@ venv/
 build/
 dist/
 *.egg-info/
+
+# pyvis
+lib/
+graphs/
