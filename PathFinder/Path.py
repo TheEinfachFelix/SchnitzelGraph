@@ -11,6 +11,10 @@ class FPath:
         return sum([self.graph[u][v]['weight'] for u, v in zip(self.path[:-1], self.path[1:])])
     def get_length(self):
         return len(self.path)
+    def get_coverage(self):
+        return len(set(self.path)) / len(self.graph.nodes)
+    def add_node(self, node: str):
+        self.path.append(node)
     
     def __str__(self):
         return f"Path: {self.path}, Weight: {self.get_weight()}, Length: {self.get_length()}"
