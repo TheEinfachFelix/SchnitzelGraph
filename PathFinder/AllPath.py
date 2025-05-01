@@ -1,21 +1,32 @@
 import networkx as nx
-import Path
+from Path import FPath
 
 
 
 
 
-def AllPath(G: nx.Graph, start_node: str, end_node: str, minCoverage: float, maxCoverage: float):
+def AllPath(G: nx.Graph, start_node: str, end_node: str, minCoverage: float, maxDoubels: float, max_depth: int = 10):
     valid_paths = []
-    numberOfNodes = len(G.nodes)
-    cutoff = int(numberOfNodes*maxCoverage)-1
 
-    for path in nx.all_simple_paths(G, source=start_node, target=end_node, cutoff=cutoff):
-        newPath = Path.FPath(path, G)
-        if newPath.get_coverage() < minCoverage:
-            print(f"Path {path} is too short, skipping.")
-            continue
+    def dfs(current_path: FPath):
+        current_node = current_path.get_path()[-1]       
 
-        valid_paths.append(newPath)
+        # Abbruchbedingung
+        if len(current_path.get_path()) > max_depth:
+            return
 
+        if current_node == end_node:
+            if minCoverage <= current_path.get_coverage() and current_path.get_doubels() <= maxDoubels:
+                # deepcopy nicht nötig, da wir bei Backtracking immer neuen Pfadstand erzeugen
+                valid_paths.append(FPath(list(current_path.get_path()), G))
+            return
+
+        for neighbor in G.neighbors(current_node):
+            current_path.add_node(neighbor)
+
+            #if current_path.get_doubels() <= maxDoubels:
+            dfs(current_path)
+            current_path.pop_node()
+
+    dfs(FPath([start_node], G))
     return valid_paths
