@@ -3,7 +3,7 @@ import AllPath
 import PathSelector
 from PrettyPrint import PrettyPrintTree
 from PathTree.PathTreeGen import genPathTree
-from PathTree.TreeGardener import *
+from PathTree.GardeningTools.LimitTreeLoop import *
 
 
 pt = PrettyPrintTree(lambda x: x.children, lambda x: x.val, orientation=PrettyPrintTree.Horizontal)
@@ -17,16 +17,12 @@ EndNodes = ['d']
 
 tree = genPathTree(G, StartNodes, EndNodes, 7)
 pt(tree)
-tree = limitTreeLoop(tree, EndNodes, 4)
-pt(tree)
+#tree = limitTreeLoop(tree, EndNodes,2)
+#pt(tree)
 
 
-
-#data = AllPath.AllPath(G, 'a', 'd',0.7, 11.3)
-#data = PathSelector.limitPathListWeight(data, 0, 20)
-#data = PathSelector.limitPathListLength(data, 0, 5)
-#data = PathSelector.limitPathListLoop(data, 2)
-
-#for i in data:
-#    print(i)
-#print("Anzahl der Pfade: ", len(data))
+# TODO:
+# limit weight
+# limit length
+# limit loop length
+# sort by difference
