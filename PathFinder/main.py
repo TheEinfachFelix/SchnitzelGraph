@@ -18,6 +18,7 @@ EndNodes = ['d']
 tree = genPathTree(G, StartNodes, EndNodes, 7)
 pt(tree)
 #tree = limitTreeLoop(tree, EndNodes,2)
+
 #pt(tree)
 
 
@@ -26,3 +27,5 @@ pt(tree)
 # limit length
 # limit loop length
 # sort by difference
+
+# get end Nodes method
