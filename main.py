@@ -31,10 +31,9 @@ pt(tree)
 
 print(f'Print: {time.time() - start} Sekunden');start = time.time()
 
-paths = pathToTree(tree)
+paths = TreeToPath(tree)
+paths = sortPaths(paths)
 for path in paths:
     print(path)
 
-
-# TODO:
-# sort by difference
+print(f'toPaht: {time.time() - start} Sekunden');start = time.time()
