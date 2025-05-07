@@ -6,14 +6,13 @@ def limitTreeLoop(oldRoot: TreeNode, endNodes: List[str], maxLoop: int) -> Optio
     
     def algo(node: TreeNode, backlog: List[str]) -> Optional[TreeNode]:
         if node.val in backlog:
-            print("Loop detected:", node.val, backlog)
             return None
         
         new_backlog = backlog + [node.val]
         if len(new_backlog) > maxLoop:
             new_backlog.pop(0)
 
-        new_node = TreeNode(node.val)
+        new_node = TreeNode(node.val, 0.0)
 
         for child in node.children:
             result = algo(child, new_backlog)

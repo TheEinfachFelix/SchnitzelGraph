@@ -1,9 +1,10 @@
 from typing import List
 
 class TreeNode:
-    def __init__(self, value):
+    def __init__(self, value, weight):
         self.val = value
         self.children = []
+        self.weight = weight
 
     def add_child(self, child):
         self.children.append(child)
@@ -11,6 +12,8 @@ class TreeNode:
     def remove_child(self, child):
         self.children.remove(child)
         return child
+    def get_weight(self):
+        return self.weight
 
 def find_depth(root, target, current_depth=0):
     if root is target:

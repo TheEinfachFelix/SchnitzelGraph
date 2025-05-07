@@ -4,6 +4,10 @@ import PathSelector
 from PrettyPrint import PrettyPrintTree
 from PathTree.PathTreeGen import genPathTree
 from PathTree.GardeningTools.LimitTreeLoop import *
+from PathTree.GardeningTools.LimitWeight import *
+from PathTree.GardeningTools.LimitLength import *
+
+
 
 
 pt = PrettyPrintTree(lambda x: x.children, lambda x: x.val, orientation=PrettyPrintTree.Horizontal)
@@ -16,16 +20,14 @@ StartNodes = ['a']
 EndNodes = ['d']
 
 tree = genPathTree(G, StartNodes, EndNodes, 7)
-pt(tree)
-#tree = limitTreeLoop(tree, EndNodes,2)
-
 #pt(tree)
+tree = limitPathListLength(tree, 0, 5, EndNodes)
+tree = limitPathListWeight(tree, 0, 10, EndNodes)
+tree = limitTreeLoop(tree, EndNodes,2)
+
+pt(tree)
 
 
 # TODO:
-# limit weight
-# limit length
-# limit loop length
 # sort by difference
-
 # get end Nodes method
