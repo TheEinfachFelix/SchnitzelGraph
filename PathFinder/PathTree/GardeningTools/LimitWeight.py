@@ -1,4 +1,4 @@
-from PathTree.TreeNode import TreeNode
+from PathFinder.PathFinder import TreeNode
 
 def limitPathListWeight(root: TreeNode, minWeight: float, maxWeight: float, EndNodes: set, currentWeight: float = 0.0) -> TreeNode | None:
     new_root = TreeNode(root.val, 0.0)

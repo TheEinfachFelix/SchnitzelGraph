@@ -1,4 +1,4 @@
-from PathTree.TreeNode import TreeNode, find_depth
+from PathFinder.PathTree.TreeNode import TreeNode, find_depth, find_path
 import networkx as nx
 
 def genPathTree(G: nx.Graph, start_node: list[str], end_node: list[str], max_depth: int):

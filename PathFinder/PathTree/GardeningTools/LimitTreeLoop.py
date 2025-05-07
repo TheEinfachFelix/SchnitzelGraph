@@ -1,6 +1,5 @@
 from typing import List, Optional
-from Path import FPath
-from PathTree.TreeNode import TreeNode
+from PathFinder.PathTree.TreeNode import TreeNode
 
 def limitTreeLoop(oldRoot: TreeNode, endNodes: List[str], maxLoop: int) -> Optional[TreeNode]:
     
