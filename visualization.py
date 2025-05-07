@@ -78,7 +78,7 @@ def visualize_network(
 
     os.makedirs(FOLDER, exist_ok=True)
     full_path = os.path.join(FOLDER, html_name)
-    network_copy.show(full_path, notebook=False)
+    network_copy.save_graph(full_path)
 
 
 def highlight_path(network: Network, path: list[str]) -> None:
