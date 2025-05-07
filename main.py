@@ -35,6 +35,6 @@ paths = pathToTree(tree)
 for path in paths:
     print(path)
 
-    
+
 # TODO:
 # sort by difference
