@@ -1,6 +1,8 @@
 import json
 from typing import List, Tuple
-
+import os
+from pathlib import Path
+path = Path(__file__).resolve().parent / "json_import.json"
 WeightedEdge = Tuple[str, str, float]
 
 def json_to_weighted_edges(data: List[dict]) -> Tuple[List[WeightedEdge], str, str]:
@@ -24,12 +26,10 @@ def json_to_weighted_edges(data: List[dict]) -> Tuple[List[WeightedEdge], str, s
 
     return edges, start_node, end_node
 
-if __name__ == "__main__":
-    with open(r"C:\Users\wm02248\Documents\Projekte\Graph Projekt\SchnitzelGraph\Json_import\json_import.json", "r") as file:
+def warp_Matrix():
+    with open(f"{path}", "r") as file:
         json_data = json.load(file)
-
     edges, start, end = json_to_weighted_edges(json_data)
-
     print("Weighted Edges:")
     for edge in edges:
         print(edge)
@@ -37,3 +37,6 @@ if __name__ == "__main__":
     if start and end:
         print(f"\nStart Node: {start}")
         print(f"End Node: {end}")
+
+if __name__ == "__main__":
+    warp_Matrix()
