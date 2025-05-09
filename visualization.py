@@ -47,6 +47,7 @@ def get_pyvis_network(graph: nx.Graph, directed=True) -> Network:
 def style_pyvis_network(network: Network, color="lightblue") -> None:
     """Gibt den Kanten und Knoten in einem Pyvis-Network ein Styling."""
     for edge in network.edges:
+        print(edge)
         edge["label"] = str(edge["width"])
         edge["font"] = {
             "color": "black",

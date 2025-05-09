@@ -3,13 +3,15 @@ import streamlit.components.v1 as components
 import os
 
 import visualization as vs
+from main import main
+
 
 def start_streamlit():
     st.set_page_config(page_title="Schnitzelgraph", layout="wide")
 
     st.title("Visualisierung von Pfaden durch einen Graphen")
 
-    network, paths = get_example_graph_and_paths()
+    network, paths = get_graph_and_path_from_main()
     
     handle_graph_and_paths(network, paths)
 
@@ -34,6 +36,10 @@ def get_example_graph_and_paths():
     network = vs.get_pyvis_network(graph)
     return network, paths
 
+def get_graph_and_path_from_main():
+    graph, paths = main()
+    network = vs.get_pyvis_network(graph)
+    return network, paths
 
 def generate_button_and_graph(network, path):
     vs.visualize_network(network, path_to_highlight=path, html_name="highlighted_graph.html")
@@ -45,9 +51,5 @@ def generate_button_and_graph(network, path):
     components.html(highlight_html, height=600, scrolling=True)
 
 
-def main():
-    start_streamlit()
-
-
 if __name__ == "__main__":
-    main()
+    start_streamlit()
