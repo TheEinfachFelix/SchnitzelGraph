@@ -19,5 +19,3 @@ Dann gibt es noch die 'requirements.txt'-Datei. Da sind alle installierten Pytho
 Man kann die einfach mit `pip install -r requirements.txt` installieren.
 Werden neue Module installiert, macht man `pip freeze > requirements.txt` und die Datei wird geupdatet.
 So sind wir hoffentlich alle auf einem Stand.
-
-
