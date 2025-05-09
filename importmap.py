@@ -1,7 +1,6 @@
 import csv
 import math
 import networkx as nx
-import matplotlib.pyplot as plt
 
 def haversine(lat1, lon1, lat2, lon2):
    R = 6371000  # Erdradius in Metern
@@ -51,36 +50,3 @@ def build_graph_with_distance_limit(csv_path, max_distance):
            # Verbindung hinzufügen
            G.add_edge(name1, nearest_node, weight=min_dist)
    return G
-
-# Distanzlimit in Metern (frei wählbar)
-MAX_DISTANZ = 70000
-# Graph erzeugen
-graph = build_graph_with_distance_limit("nodes.csv", max_distance=MAX_DISTANZ)
-# Knotenpositionen extrahieren (Längengrad = x, Breitengrad = y)
-pos = {
-   node: (data['lon'], data['lat']) for node, data in graph.nodes(data=True)
-}
-# Plot starten
-plt.figure(figsize=(10, 8))
-# Knoten und Kanten zeichnen
-nx.draw(
-   graph,
-   pos,
-   with_labels=True,
-   node_size=600,
-   node_color='lightblue',
-   edge_color='gray',
-   font_size=8
-)
-# Kantengewichte (Distanz in Metern) beschriften
-edge_labels = nx.get_edge_attributes(graph, 'weight')
-formatted_labels = {edge: f"{dist:.0f} m" for edge, dist in edge_labels.items()}
-nx.draw_networkx_edge_labels(graph, pos, edge_labels=formatted_labels, font_size=7)
-# Plot beschriften
-plt.title(f"Graph mit Distanzlimit {MAX_DISTANZ} m")
-plt.xlabel("Längengrad")
-plt.ylabel("Breitengrad")
-plt.axis("equal")
-plt.grid(True)
-plt.tight_layout()
-plt.show()
