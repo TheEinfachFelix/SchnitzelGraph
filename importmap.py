@@ -15,7 +15,8 @@ def parse_point_wkt(wkt):
    wkt = wkt.replace("POINT (", "").replace(")", "")
    lon_str, lat_str = wkt.strip().split()
    return float(lat_str), float(lon_str)
-def build_graph_with_distance_limit(csv_path, max_distance):
+
+def MapToGraph(csv_path, max_distance) -> nx.Graph:
    G = nx.Graph()
    nodes = []
    # 1. Knoten einlesen

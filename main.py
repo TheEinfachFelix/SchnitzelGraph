@@ -2,6 +2,7 @@ import time
 import networkx as nx
 from PrettyPrint import PrettyPrintTree
 from PathFinder.PathFinder import *
+from importmap import MapToGraph
 
 
 def main():
@@ -17,16 +18,20 @@ def main():
     StartNodes = ['a']
     EndNodes = ['d']
 
+    # init map to graph
+    # G = MapToGraph('nodes.csv', 75000)
+    # StartNodes = ['Node 1']#, 'Node 2'
+    # EndNodes = ['Node 2']
 
     print(f'Setup: {time.time() - start} Sekunden');start = time.time()
     # Start PathFinder
     print('Start PathFinder')
     tree = genPathTree(G, StartNodes, EndNodes, 7)
     print(f'Graph to TreeTree: {time.time() - start} Sekunden');start = time.time()
-
+    pt(tree)
     # Filter Paths
     tree = limitPathListLength(tree, 0, 5, EndNodes)
-    tree = limitPathListWeight(tree, 0, 10, EndNodes)
+    tree = limitPathListWeight(tree, 0, 10 , EndNodes)
     tree = limitTreeLoop(tree, EndNodes,2)
 
     print(f'Filter: {time.time() - start} Sekunden');start = time.time()
