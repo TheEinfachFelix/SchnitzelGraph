@@ -47,6 +47,7 @@ def get_pyvis_network(graph: nx.Graph, directed=True) -> Network:
 def style_pyvis_network(network: Network, color="lightblue") -> None:
     """Gibt den Kanten und Knoten in einem Pyvis-Network ein Styling."""
     for edge in network.edges:
+        print(edge)
         edge["label"] = str(edge["width"])
         edge["font"] = {
             "color": "black",
@@ -78,7 +79,7 @@ def visualize_network(
 
     os.makedirs(FOLDER, exist_ok=True)
     full_path = os.path.join(FOLDER, html_name)
-    network_copy.show(full_path, notebook=False)
+    network_copy.save_graph(full_path)
 
 
 def highlight_path(network: Network, path: list[str]) -> None:
