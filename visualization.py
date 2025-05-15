@@ -31,21 +31,27 @@ PATH = ["A", "B", "D", "H", "I", "J"]
 
 
 def get_directed_weighted_graph(edges: list[WeightedEdge]) -> nx.Graph:
-    """Erstellt einen gerichteten und gewichteten Graphen mit der networkx-Bibliothek."""
+    """
+    Erstellt einen gerichteten und gewichteten Graphen mit der networkx-Bibliothek.
+    """
     graph = nx.DiGraph()
     graph.add_weighted_edges_from(edges)
     return graph
 
 
 def get_pyvis_network(graph: nx.Graph, directed=True) -> Network:
-    """Erstellt aus einem networkx-Graphen ein Pyvis-Network."""
+    """
+    Erstellt aus einem networkx-Graphen ein Pyvis-Network.
+    """
     network = Network(directed=directed)
     network.from_nx(graph)
     return network
 
 
 def style_pyvis_network(network: Network, color="lightblue") -> None:
-    """Gibt den Kanten und Knoten in einem Pyvis-Network ein Styling."""
+    """
+    Gibt den Kanten und Knoten in einem Pyvis-Network ein Styling.
+    """
     for edge in network.edges:
         print(edge)
         edge["label"] = str(edge["width"])
@@ -83,7 +89,9 @@ def visualize_network(
 
 
 def highlight_path(network: Network, path: list[str]) -> None:
-    """Hebt einen Pfad durch ein Pyvis-Network hervor"""
+    """
+    Hebt einen Pfad durch ein Pyvis-Network hervor.
+    """
     path_edges = list(pairwise(path))
     for edge in network.edges:
         if (edge["from"], edge["to"]) in path_edges:
